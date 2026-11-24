@@ -235,7 +235,10 @@ public final class MainActivity extends Activity {
         dock.addView(markBox, new LinearLayout.LayoutParams(theme.dp(56), theme.dp(56)));
         TextView label = Ui.text(this, theme, "Diagnostics", 12, theme.muted, theme.sans);
         label.setGravity(Gravity.CENTER);
-        dock.addView(label, Ui.matchTop(theme.dp(8)));
+        LinearLayout.LayoutParams labelParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        labelParams.topMargin = theme.dp(8);
+        dock.addView(label, labelParams);
         dock.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showScreen("diagnostics", true);
@@ -244,7 +247,25 @@ public final class MainActivity extends Activity {
         dock.setContentDescription("Diagnostics");
         LinearLayout.LayoutParams dockLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         dockLp.topMargin = theme.dp(32);
-        column.addView(dock, dockLp);
+        FrameLayout shortcuts = new FrameLayout(this);
+        shortcuts.addView(dock, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.TOP | Gravity.CENTER_HORIZONTAL));
+        FrameLayout.LayoutParams themeParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT, theme.dp(44), Gravity.TOP | Gravity.END);
+        themeParams.topMargin = theme.dp(6);
+        shortcuts.addView(appearanceButton(), themeParams);
+        column.addView(shortcuts, dockLp);
+    }
+
+    private TextView appearanceButton() {
+        TextView appearanceButton = Ui.text(this, theme, "Theme", 12, theme.muted, theme.sans);
+        appearanceButton.setGravity(Gravity.CENTER);
+        appearanceButton.setMinHeight(theme.dp(44));
+        appearanceButton.setPadding(theme.dp(10), 0, theme.dp(10), 0);
+        appearanceButton.setBackground(theme.rounded(theme.surface, theme.line, 14));
+        appearanceButton.setContentDescription("Appearance");
+        appearanceButton.setOnClickListener(v -> showAppearance());
+        return appearanceButton;
     }
 
     private void buildDiagnostics(LinearLayout column) {
@@ -268,14 +289,7 @@ public final class MainActivity extends Activity {
         LinearLayout.LayoutParams titlesLp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         titlesLp.leftMargin = theme.dp(12);
         header.addView(titles, titlesLp);
-        TextView appearanceButton = Ui.text(this, theme, "Theme", 12, theme.muted, theme.sans);
-        appearanceButton.setGravity(Gravity.CENTER);
-        appearanceButton.setMinHeight(theme.dp(44));
-        appearanceButton.setPadding(theme.dp(10), 0, theme.dp(10), 0);
-        appearanceButton.setBackground(theme.rounded(theme.surface, theme.line, 14));
-        appearanceButton.setContentDescription("Appearance");
-        appearanceButton.setOnClickListener(v -> showAppearance());
-        header.addView(appearanceButton);
+        header.addView(appearanceButton());
         column.addView(header);
 
         LinearLayout card = card();
