@@ -1,0 +1,5 @@
+Strand DNS Diagnostics sends real DNS queries over HTTPS or TLS using your Android device's network connection.
+
+Choose a resolver preset or enter your own server. Run DoH and DoT checks individually or compare them side by side. Each report includes connection stages, timings, certificate details, DNS response codes, and answer records.
+
+Queries run on the device without a relay or an account. Recent results stay on the device. Choose System default, Light, or Dark appearance.

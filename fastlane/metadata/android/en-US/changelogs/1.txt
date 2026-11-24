@@ -1,0 +1,1 @@
+First release of Strand DNS Diagnostics with on-device DoH and DoT checks, certificate diagnostics, recent results, and three appearance modes.

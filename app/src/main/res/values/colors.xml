@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#FF10120E</color>
+    <color name="surface">#FF1C2118</color>
+    <color name="signal">#FFD2F25C</color>
+</resources>
