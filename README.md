@@ -37,3 +37,9 @@ its keystore and credentials from the repository's Actions secrets:
 `STRAND_KEYSTORE_BASE64`, `STRAND_KEYSTORE_PASSWORD`, `STRAND_KEY_ALIAS`, and
 `STRAND_KEY_PASSWORD`. Keep the same release key and increment `versionCode`
 for every published version.
+
+## License
+
+The Strand DNS Diagnostics app source is licensed under the
+[GNU Affero General Public License, version 3 only](LICENSE) (`AGPL-3.0-only`).
+Bundled Hack font files remain subject to their [upstream license](app/src/main/assets/fonts/Hack-LICENSE.txt).
